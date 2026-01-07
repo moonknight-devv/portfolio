@@ -3,7 +3,7 @@ import {
     Radio, AlertTriangle, RefreshCcw, Lock, Fingerprint, Settings, X, UserCircle, Plus, Code, Link as LinkIcon, Github, Twitter, Linkedin, Instagram, Terminal, Palette
 } from 'lucide-react';
 import type { Project, Identity, UiSettings, SocialLinks, ProfilePics } from '../../data/types';
-import { authService } from '../../services/authService';
+
 import { projectService } from '../../services/projectService';
 import { useAdminAuth } from '../../hooks/useAdminAuth';
 
