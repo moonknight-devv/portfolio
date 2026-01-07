@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Minimal UI Scaling - 12% font size reduction */
+  --font-scale: 0.88;
+  
+  /* Spacing Scale - 20-25% reduction */
+  --spacing-scale: 0.75;
+  
+  /* Minimal animation durations */
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 250ms;
+}
+
 @layer utilities {
   .custom-scrollbar::-webkit-scrollbar {
     width: 5px;

@@ -54,11 +54,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, theme, onDivine, isA
                 setRotate({ x: 0, y: 0 });
             }}
             style={{
-                transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg) scale(${isHovered ? 1.02 : 1})`,
-                transition: isHovered ? 'transform 0.1s ease-out' : 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
+                transform: `perspective(1000px) rotateX(${rotate.x * 0.3}deg) rotateY(${rotate.y * 0.3}deg) scale(${isHovered ? 1.01 : 1})`,
+                transition: isHovered ? 'transform 0.1s ease-out' : 'all 0.2s cubic-bezier(0.23, 1, 0.32, 1)',
                 backgroundColor: `rgba(255, 255, 255, ${uiSettings.glassOpacity / 100})`
             }}
-            className={`group border border-white/[0.05] rounded-[2.5rem] p-12 relative overflow-hidden backdrop-blur-md hover:border-white/20 shadow-2xl flex flex-col min-h-[450px]`}
+            className={`group border border-white/[0.05] rounded-[1.5rem] p-8 relative overflow-hidden backdrop-blur-md hover:border-white/20 shadow-2xl flex flex-col min-h-[360px]`}
         >
             {/* Visual Scan Effects */}
             <div className="absolute inset-0 opacity-0 group-hover:opacity-10 pointer-events-none z-0 transition-opacity duration-500"
@@ -72,27 +72,27 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, theme, onDivine, isA
             />
 
             <div className="relative z-30 flex flex-col h-full">
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-10 bg-white/[0.03] transition-all border border-white/[0.05] group-hover:scale-110 relative ${isAnalyzed ? `${theme.bg} ${theme.color} ${theme.border}` : ''}`}>
-                    {isAnalyzed ? <Activity className="w-6 h-6 animate-pulse" /> : project.icon}
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-white/[0.03] transition-all duration-200 border border-white/[0.05] group-hover:scale-105 relative ${isAnalyzed ? `${theme.bg} ${theme.color} ${theme.border}` : ''}`}>
+                    {isAnalyzed ? <Activity className="w-5 h-5 animate-pulse" /> : project.icon}
                 </div>
 
                 <div className="relative">
-                    <h3 className="text-3xl font-black mb-2 uppercase tracking-tighter text-white group-hover:translate-x-2 transition-transform duration-300">
+                    <h3 className="text-2xl font-black mb-2 uppercase tracking-tighter text-white group-hover:translate-x-1 transition-transform duration-200">
                         {project.title}
                     </h3>
-                    <p className="text-slate-600 text-[10px] uppercase tracking-[0.4em] mb-12 font-black italic">
+                    <p className="text-slate-600 text-[9px] uppercase tracking-[0.3em] mb-8 font-black italic">
                         {project.tech}
                     </p>
 
-                    <div className="space-y-5 mb-10">
+                    <div className="space-y-3 mb-8">
                         {Object.entries(project.stats).map(([label, val], idx) => (
                             <div
                                 key={label}
-                                style={{ transitionDelay: `${idx * 100}ms` }}
-                                className="flex justify-between items-center border-b border-white/[0.03] pb-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500"
+                                style={{ transitionDelay: `${idx * 50}ms` }}
+                                className="flex justify-between items-center border-b border-white/[0.03] pb-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-200"
                             >
-                                <span className="text-[9px] uppercase text-slate-500 font-black tracking-widest">{label}</span>
-                                <span className={`text-[11px] font-mono font-black ${theme.color}`}>{val}</span>
+                                <span className="text-[8px] uppercase text-slate-500 font-black tracking-widest">{label}</span>
+                                <span className={`text-[10px] font-mono font-black ${theme.color}`}>{val}</span>
                             </div>
                         ))}
                     </div>

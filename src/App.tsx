@@ -4,6 +4,7 @@ import type { Identity, Project, SocialLinks, UiSettings, ProfilePics } from './
 import { THEMES } from './data/constants';
 import { projectService } from './services/projectService';
 
+import Welcome from './components/Welcome';
 import ProjectCard from './components/ProjectCard';
 import ContactTerminal from './components/ContactTerminal';
 import IdentityMetrics from './components/IdentityMetrics';
@@ -116,30 +117,30 @@ const App: React.FC = () => {
       </Suspense>
 
       <header>
-        <nav className="fixed top-0 w-full z-50 px-10 py-8 flex justify-between items-center bg-black/40 backdrop-blur-3xl border-b border-white/[0.05]" aria-label="Main Navigation">
+        <nav className="fixed top-0 w-full z-50 px-8 py-5 flex justify-between items-center bg-black/40 backdrop-blur-3xl border-b border-white/[0.05]" aria-label="Main Navigation">
           <div
-            className="flex items-center gap-6 group cursor-pointer"
+            className="flex items-center gap-5 group cursor-pointer"
             onDoubleClick={() => setIsAdminOpen(true)}
             role="button"
             aria-label="Admin Portal Access (Double Click)"
             tabIndex={0}
             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsAdminOpen(true); }}
           >
-            <div className="relative w-14 h-14 rounded-full bg-white flex items-center justify-center group-hover:rotate-[360deg] transition-transform duration-[2.5s] shadow-[0_0_30px_rgba(255,255,255,0.2)] overflow-hidden">
+            <div className="relative w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:rotate-[360deg] transition-transform duration-1000 shadow-[0_0_20px_rgba(255,255,255,0.15)] overflow-hidden">
               {profilePics[identity] ? (
                 <img src={profilePics[identity]} alt={`${identity} Profile`} className="w-full h-full object-cover" />
               ) : (
-                <Moon className="text-black w-8 h-8 fill-current" aria-hidden="true" />
+                <Moon className="text-black w-7 h-7 fill-current" aria-hidden="true" />
               )}
             </div>
             <div className="flex flex-col">
-              <span className="font-black tracking-[0.5em] text-[14px] uppercase text-white">Spector_System</span>
-              <span className={`text-[9px] tracking-[0.6em] font-black uppercase transition-colors duration-500 ${currentTheme.color}`}>
+              <span className="font-black tracking-[0.4em] text-[12px] uppercase text-white">Spector_System</span>
+              <span className={`text-[8px] tracking-[0.5em] font-black uppercase transition-colors duration-300 ${currentTheme.color}`}>
                 {identity.toUpperCase()}_ACTIVE // SECURE_NODE
               </span>
             </div>
           </div>
-          <div className="hidden md:flex gap-4 p-1 bg-white/5 rounded-full border border-white/10" role="radiogroup" aria-label="Identity Switcher">
+          <div className="hidden md:flex gap-3 p-1 bg-white/5 rounded-full border border-white/10" role="radiogroup" aria-label="Identity Switcher">
             {['Marc', 'Steven', 'Jake'].map((id) => (
               <button
                 key={id}
@@ -147,7 +148,7 @@ const App: React.FC = () => {
                 role="radio"
                 aria-checked={identity === id}
                 aria-label={`Switch to ${id} personality`}
-                className={`px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-500 ${identity === id ? 'bg-white text-black shadow-xl scale-105' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}
+                className={`px-6 py-2 rounded-full text-[9px] font-black uppercase tracking-widest transition-all duration-300 ${identity === id ? 'bg-white text-black shadow-xl scale-105' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}
               >
                 {id}
               </button>
@@ -157,8 +158,11 @@ const App: React.FC = () => {
       </header>
 
       <main>
+        {/* Welcome Section */}
+        <Welcome />
+
         {/* Hero Section */}
-        <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-10" aria-labelledby="hero-title">
+        <section className="relative min-h-[70vh] flex flex-col items-center justify-center text-center px-8" aria-labelledby="hero-title">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] text-[20vw] font-black pointer-events-none uppercase tracking-tighter text-white" aria-hidden="true">
             {identity.toUpperCase()}
           </div>
@@ -170,28 +174,28 @@ const App: React.FC = () => {
             </div>
           )}
 
-          <h1 id="hero-title" className="text-[7rem] md:text-[14rem] font-serif italic mb-8 leading-none text-white tracking-tighter drop-shadow-2xl animate-in fade-in zoom-in duration-1000">
+          <h1 id="hero-title" className="text-[6rem] md:text-[10rem] font-serif italic mb-6 leading-none text-white tracking-tighter drop-shadow-2xl animate-in fade-in zoom-in duration-300">
             {identity === 'Marc' ? 'Soldier' : identity === 'Steven' ? 'Scholar' : 'Executioner'}
           </h1>
-          <div className="flex items-center gap-8">
-            <div className={`h-[1px] w-20 ${currentTheme.bg.replace('10', '40')}`} aria-hidden="true" />
-            <p className={`text-[14px] font-black uppercase tracking-[2em] ${currentTheme.color}`}>THE_ARCHIVES</p>
-            <div className={`h-[1px] w-20 ${currentTheme.bg.replace('10', '40')}`} aria-hidden="true" />
+          <div className="flex items-center gap-6">
+            <div className={`h-[1px] w-16 ${currentTheme.bg.replace('10', '40')}`} aria-hidden="true" />
+            <p className={`text-[12px] font-black uppercase tracking-[1.5em] ${currentTheme.color}`}>THE_ARCHIVES</p>
+            <div className={`h-[1px] w-16 ${currentTheme.bg.replace('10', '40')}`} aria-hidden="true" />
           </div>
         </section>
 
         {/* Archives Section */}
-        <section className="relative z-10 py-32 px-10 max-w-[1700px] mx-auto" id="archives" aria-labelledby="archives-title">
-          <div className="flex flex-col mb-24 relative">
-            <h2 id="archives-title" className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter mb-4 opacity-90">THE_ARCHIVES</h2>
-            <div className="flex items-center gap-4">
-              <div className={`h-[2px] w-24 ${currentTheme.bg.replace('10', '100')}`} aria-hidden="true" />
-              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-500">FRAGMENTED_SOLUTIONS // {currentTheme.tagline}</span>
+        <section className="relative z-10 py-20 px-8 max-w-[1700px] mx-auto" id="archives" aria-labelledby="archives-title">
+          <div className="flex flex-col mb-16 relative">
+            <h2 id="archives-title" className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-3 opacity-90">THE_ARCHIVES</h2>
+            <div className="flex items-center gap-3">
+              <div className={`h-[1.5px] w-20 ${currentTheme.bg.replace('10', '100')}`} aria-hidden="true" />
+              <span className="text-[9px] font-black uppercase tracking-[0.4em] text-slate-500">FRAGMENTED_SOLUTIONS // {currentTheme.tagline}</span>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {!isLoaded ? (
-              <div className="col-span-full py-20 text-center font-mono text-[10px] uppercase tracking-[0.5em] text-slate-600 animate-pulse">
+              <div className="col-span-full py-16 text-center font-mono text-[9px] uppercase tracking-[0.4em] text-slate-600 animate-pulse">
                 Synchronizing_Neural_Archives...
               </div>
             ) : (
@@ -209,8 +213,8 @@ const App: React.FC = () => {
         <SystemMonitoring theme={currentTheme} identity={identity} />
       </main>
 
-      <footer className="py-20 text-center border-t border-white/5 bg-black/40 relative z-20" role="contentinfo">
-        <p className="text-[10px] uppercase tracking-[1em] text-slate-500">Neural_Bridge_Stable // SPECTOR_SYSTEM_v4.2 // Sector_004</p>
+      <footer className="py-16 text-center border-t border-white/5 bg-black/40 relative z-20" role="contentinfo">
+        <p className="text-[9px] uppercase tracking-[0.8em] text-slate-500">Neural_Bridge_Stable // SPECTOR_SYSTEM_v4.2 // Sector_004</p>
       </footer>
     </div>
   );
