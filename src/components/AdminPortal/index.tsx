@@ -6,6 +6,7 @@ import type { Project, Identity, UiSettings, SocialLinks, ProfilePics } from '..
 
 import { projectService } from '../../services/projectService';
 import { useAdminAuth } from '../../hooks/useAdminAuth';
+import LayoutEditor from '../LayoutEditor';
 
 interface AdminPortalProps {
     isOpen: boolean;
@@ -410,6 +411,8 @@ const AdminPortal: React.FC<AdminPortalProps> = ({
                                             ))}
                                         </div>
                                     </section>
+
+                                    <LayoutEditor />
                                 </div>
 
                                 {/* Real-time System Logs Terminal */}

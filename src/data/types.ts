@@ -43,3 +43,15 @@ export interface Log {
     type: 'sys' | 'user';
     text: string;
 }
+
+// Layout Editor Types
+export interface AssetLayout {
+    x: number;
+    y: number;
+    width: number | string;
+    height: number | string;
+}
+
+export interface LayoutConfig {
+    [assetId: string]: AssetLayout;
+}
